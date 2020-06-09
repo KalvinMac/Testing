@@ -7,7 +7,7 @@ pipeline {
       steps {
         echo 'Genrate TestFlight App Version'
         sh 'new=$(($BUILD_NUMBER + 1))'
-        sh 'v=$(/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion 1.0.$new\" $WORKSPACE/ios/MyIntuitive/Info.plist)'
+        sh 'v=$(/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion 1.0.${new}\" $WORKSPACE/ios/MyIntuitive/Info.plist)'
       }
     }
 
