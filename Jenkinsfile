@@ -1,7 +1,6 @@
 pipeline {
   agent any
   environment {
-       
         JENKINS_PWD = credentials('JENKINS_PWD')
     }
   stages {
@@ -25,10 +24,7 @@ pipeline {
 
     stage('zip file') {
       steps {
-            sh 'mkdir archive'
-            sh 'echo MyIntuitiveApp_QA > build/MyIntuitive.app'
-            sh 'zip zipFile: \"MyIntuitiveApp_QA.zip\", archive: false, dir: \"build\"'
-            
+            sh 'zip -r -D $WORKSPACE/build/MyIntuitiveApp_QA.zip $WORKSPACE/ios/DerivedData/MyIntuitive/Build/Products/Release-iphonesimulator/MyIntuitive.app'
         }
     }
 
