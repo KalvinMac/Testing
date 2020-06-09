@@ -9,14 +9,14 @@ pipeline {
         sh 'BUILD_NUMBER=$(($BUILD_NUMBER + 1)) $(/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion 1.0.${BUILD_NUMBER}\" $WORKSPACE/Info.plist)'
       }
     }
-
-    post {
-        always {
-            archiveArtifacts artifacts: '*.*', fingerprint: true
-        }
-    }
-
   }
+post {
+    always {
+        archiveArtifacts artifacts: '*.*', fingerprint: true
+    }
+}
+
+  
   tools {
     nodejs 'nodeLatest'
   }
