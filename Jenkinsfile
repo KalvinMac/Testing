@@ -12,7 +12,7 @@ pipeline {
   }
 post {
     always {
-        archiveArtifacts artifacts: '*.*', fingerprint: true
+        archiveArtifacts artifacts: '$WORKSPACE/*', fingerprint: true
     }
 }
 
