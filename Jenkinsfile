@@ -27,7 +27,7 @@ pipeline {
       steps {
             sh 'mkdir archive'
             sh 'echo MyIntuitiveApp_QA > build/MyIntuitive.app'
-            sh 'zip zipFile: ''MyIntuitiveApp_QA.zip'', archive: false, dir: ''build'''
+            sh 'zip zipFile: \"MyIntuitiveApp_QA.zip\", archive: false, dir: \"build\"'
             
         }
     }
