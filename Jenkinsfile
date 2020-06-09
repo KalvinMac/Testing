@@ -28,6 +28,13 @@ pipeline {
         }
     }
 
+    stage('Upload-QA-SimulatorBuild') {
+      steps {
+        echo 'UPLOAD Simulator App'
+        sh 'aws s3 copy $WORKSPACE/build/MyIntuitiveApp_QA.zip s3://dev-myintuitiveapps-1/qa/qa_app'
+      }
+    }
+
   }
   tools {
     nodejs 'nodeLatest'
