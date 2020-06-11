@@ -1,3 +1,5 @@
+
+
 pipeline {
   agent any
   stages {
@@ -12,7 +14,11 @@ pipeline {
 
         stage('slack') {
           steps {
-            slackSend(message: 'Test Message', color: 'green', iconEmoji: 'thumbsup')
+            script {
+                BUILD_USER = getBuildUser()
+            }
+            def message = "@here Build <${env.BUILD_URL}|${currentBuild.displayName}|${currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()}> " + "successfuly deployed ${icons[randomIndex]} currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()"
+            slackSend(message: message, color: 'good', iconEmoji: 'thumbsup')
           }
         }
 
