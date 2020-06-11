@@ -41,7 +41,7 @@ pipeline {
   }
   post {
     always {
-      archiveArtifacts(artifacts: 'build/*.{zip,ipa,plist}', fingerprint: true)
+      archiveArtifacts(artifacts: 'build/*.zip,build/*.plist,build/*.ipa', fingerprint: true)
     }
 
   }
