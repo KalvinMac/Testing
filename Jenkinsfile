@@ -12,7 +12,7 @@ pipeline {
 
         stage('slack') {
           steps {
-            slackSend(message: 'Test Message')
+            slackSend(message: 'Test Message', color: 'green', iconEmoji: 'thumbsup')
           }
         }
 
