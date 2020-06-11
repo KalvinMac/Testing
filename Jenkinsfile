@@ -1,5 +1,12 @@
-def getBuildUser() {
-    return currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()
+
+
+def notifySlack() {
+  def icons = [":unicorn_face:", ":beer:", ":bee:", ":man_dancing:",
+    ":party_parrot:", ":ghost:", ":dancer:", ":scream_cat:"]
+  def randomIndex = (new Random()).nextInt(icons.size())
+    def message = "@here Build <${env.BUILD_URL}|${currentBuild.displayName}|${currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()}> " +
+    "successfuly deployed to the production ${icons[randomIndex]}"
+slackSend(message: message, channel: '#channel', color: 'good', token: 'token')
 }
 
 pipeline {
@@ -16,13 +23,7 @@ pipeline {
 
         stage('slack') {
           steps {
-              always {
-            script {
-                BUILD_USER = getBuildUser()
-            }
-            def message = "@here Build <${env.BUILD_URL}|${currentBuild.displayName}|${BUILD_USER}> " + "successfuly deployed ${icons[randomIndex]}"
-            slackSend(message: message, color: 'good', iconEmoji: 'thumbsup')
-          }
+              notifySlack()
           }
         }
 
