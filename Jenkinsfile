@@ -24,7 +24,7 @@ pipeline {
 
     stage('zip file') {
       steps {
-            sh 'zip -r -D $WORKSPACE/build/MyIntuitiveApp_QA.zip $WORKSPACE/ios/DerivedData/MyIntuitive/Build/Products/Release-iphonesimulator/MyIntuitive.app'
+            sh 'zip -r $WORKSPACE/build/MyIntuitiveApp_QA.zip $WORKSPACE/ios/DerivedData/MyIntuitive/Build/Products/Release-iphonesimulator/MyIntuitive.app'
         }
     }
 
