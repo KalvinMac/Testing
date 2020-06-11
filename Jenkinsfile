@@ -19,7 +19,7 @@ pipeline {
             script {
                 BUILD_USER = getBuildUser()
             }
-            def message = "@here Build <${env.BUILD_URL}|${currentBuild.displayName}|${BUILD_USER}> " + "successfuly deployed ${icons[randomIndex]} currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()"
+            def message = "@here Build <${env.BUILD_URL}|${currentBuild.displayName}|${BUILD_USER}> " + "successfuly deployed ${icons[randomIndex]}"
             slackSend(message: message, color: 'good', iconEmoji: 'thumbsup')
           }
         }
