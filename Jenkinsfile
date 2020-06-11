@@ -1,4 +1,6 @@
-
+def getBuildUser() {
+    return currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()
+}
 
 pipeline {
   agent any
@@ -17,7 +19,7 @@ pipeline {
             script {
                 BUILD_USER = getBuildUser()
             }
-            def message = "@here Build <${env.BUILD_URL}|${currentBuild.displayName}|${currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()}> " + "successfuly deployed ${icons[randomIndex]} currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()"
+            def message = "@here Build <${env.BUILD_URL}|${currentBuild.displayName}|${BUILD_USER}> " + "successfuly deployed ${icons[randomIndex]} currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()"
             slackSend(message: message, color: 'good', iconEmoji: 'thumbsup')
           }
         }
