@@ -17,6 +17,13 @@ pipeline {
 
       }
     }
+    post {
+        always {
+	   
+            slackSend(currentBuild.currentResult)
+            
+        }
+    }
 
   }
   tools {
