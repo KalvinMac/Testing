@@ -26,9 +26,7 @@ pipeline {
        failure {
             slackSend(color: '#FF9FA1', message: currentBuild.currentResult)
        }
-        always {
-            slackSend(color: '#FFFE89', message: currentBuild.currentResult)
-        }
+        
     }
   tools {
     nodejs 'nodeLatest'
