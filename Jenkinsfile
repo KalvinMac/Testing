@@ -9,9 +9,9 @@ pipeline {
           }
         }
 
-        stage('slack') {
+        stage('Notify') {
           steps {
-            notifySlack()
+            slackSend(color: 'red')
           }
         }
 
