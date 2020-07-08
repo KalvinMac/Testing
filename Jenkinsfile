@@ -20,7 +20,7 @@ pipeline {
   }
   post {
     success {
-            slackSend(color: 'good', message: currentBuild.currentResult)
+            slackSend(color: 'good', message: currentBuild.currentResult.rawBuild.getCause(Cause.UserIdCause).getUserId())
        }
        
        failure {
