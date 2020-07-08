@@ -16,16 +16,15 @@ pipeline {
         }
 
       }
-    }
-    post {
+    }   
+  }
+  post {
         always {
 	   
             slackSend(currentBuild.currentResult)
             
         }
     }
-
-  }
   tools {
     nodejs 'nodeLatest'
   }
