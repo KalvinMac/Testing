@@ -12,7 +12,7 @@ pipeline {
         stage('Notify') {
           steps {
             wrap([$class: 'BuildUser']) {
-              slackSend(color: '#D4DAD', message: "Job: ${env.JOB_NAME} with buildnumber ${env.BUILD_NUMBER} is started by ${env.BUILD_USER_ID}")
+              slackSend(color: '#D4DAD', message: "Job: ${env.JOB_NAME} with buildnumber ${env.BUILD_NUMBER} is started by ${env.BUILD_USER}")
             }
           }
         }
