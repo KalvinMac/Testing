@@ -11,7 +11,7 @@ pipeline {
 
         stage('Notify') {
           steps {
-            slackSend(color: 'good', message: "Job: ${env.JOB_NAME} with buildnumber ${env.BUILD_NUMBER} is started")
+            slackSend(color: '#D4DAD', message: "Job: ${env.JOB_NAME} with buildnumber ${env.BUILD_NUMBER} is started")
           }
         }
 
@@ -19,10 +19,15 @@ pipeline {
     }   
   }
   post {
-        always {
-	   
+    success {
             slackSend(color: 'good', message: currentBuild.currentResult)
-            
+       }
+       
+       failure {
+            slackSend(color: '#FF9FA1', message: currentBuild.currentResult)
+       }
+        always {
+            slackSend(color: '#FFFE89', message: currentBuild.currentResult)
         }
     }
   tools {
