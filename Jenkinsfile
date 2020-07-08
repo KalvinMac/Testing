@@ -11,7 +11,7 @@ pipeline {
 
         stage('Notify') {
           steps {
-            slackSend(color: '#D4DAD', message: "Job: ${env.JOB_NAME} with buildnumber ${env.BUILD_NUMBER} is started")
+            slackSend(color: '#D4DAD', message: "Job: ${env.JOB_NAME} with buildnumber ${env.BUILD_NUMBER} is started by ${env.BUILD_TRIGGER_BY}")
           }
         }
 
@@ -20,7 +20,7 @@ pipeline {
   }
   post {
     success {
-            slackSend(color: 'good', message: currentBuild.currentResult.rawBuild.getCause(Cause.UserIdCause).getUserId())
+            slackSend(color: 'good', message: currentBuild.currentResult)
        }
        
        failure {
