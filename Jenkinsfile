@@ -11,7 +11,7 @@ pipeline {
 
         stage('Notify') {
           steps {
-            slackSend(color: 'red')
+            slackSend(color: 'good', message: "Job: ${env.JOB_NAME} with buildnumber ${env.BUILD_NUMBER} is started")
           }
         }
 
