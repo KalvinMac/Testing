@@ -21,7 +21,7 @@ pipeline {
   post {
         always {
 	   
-            slackSend(currentBuild.currentResult)
+            slackSend(color: 'good', message: currentBuild.currentResult)
             
         }
     }
