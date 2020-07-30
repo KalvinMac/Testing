@@ -11,26 +11,28 @@ pipeline {
 
         stage('Notify') {
           steps {
-            wrap([$class: 'BuildUser']) {
-              slackSend(color: '#D4DAD', message: "Job: ${env.JOB_NAME} with buildnumber ${env.BUILD_NUMBER} is started by ${env.BUILD_USER}")
+            wrap(delegate: [$class: 'BuildUser']) {
+              slackSend(color: '#D4DAD', message: "Job: ${env.JOB_NAME} with buildnumber ${env.BUILD_NUMBER} is started by ${env.BUILD_USER}", iconEmoji: 'thumbsup:')
             }
+
           }
         }
 
       }
-    }   
+    }
+
+  }
+  tools {
+    nodejs 'nodeLatest'
   }
   post {
     success {
-            slackSend(color: 'good', message: currentBuild.currentResult)
-       }
-       
-       failure {
-            slackSend(color: '#FF9FA1', message: currentBuild.currentResult)
-       }
-        
+      slackSend(color: 'good', message: currentBuild.currentResult)
     }
-  tools {
-    nodejs 'nodeLatest'
+
+    failure {
+      slackSend(color: '#FF9FA1', message: currentBuild.currentResult)
+    }
+
   }
 }
